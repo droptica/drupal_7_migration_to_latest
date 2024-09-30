@@ -1,7 +1,7 @@
 <?php
 global $databases;
 
-$external_script_url = '';
+$external_script_url = 'https://raw.githubusercontent.com/droptica/drupal_7_migration_to_latest/refs/heads/main/droptica-drupal-7-audit.php';
 $config = [];
 if (isset($databases['default']['default'])) {
 	$db_info = $databases['default']['default'];

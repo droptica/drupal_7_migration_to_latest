@@ -455,22 +455,26 @@ function format_table_output($data) {
  * @return array An array of file paths.
  */
 function find_files_by_type($directory, $type, $exclude = false) {
-	$files = [];
-	
-	$iterator = new RecursiveIteratorIterator(
-		new RecursiveDirectoryIterator($directory)
-	);
-	
-	foreach ($iterator as $file) {
-		if ($exclude && strpos($file->getPathname(), $exclude) !== false) {
-			continue;
-		}
-		if ($file->isFile() && pathinfo($file, PATHINFO_EXTENSION) === $type) {
-			$files[] = $file->getRealPath();
-		}
-	}
-	
-	return $files;
+    $files = [];
+
+    if (!is_dir($directory)) {
+        return $files; // Return an empty array if the directory does not exist
+    }
+
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($directory)
+    );
+
+    foreach ($iterator as $file) {
+        if ($exclude && strpos($file->getPathname(), $exclude) !== false) {
+            continue;
+        }
+        if ($file->isFile() && pathinfo($file, PATHINFO_EXTENSION) === $type) {
+            $files[] = $file->getRealPath();
+        }
+    }
+
+    return $files;
 }
 
 /**

@@ -487,9 +487,11 @@ function get_file_extensions($directory, $exclude = false) {
 		return $extensions;
 	}
 	
-	$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+	$iterator = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator($directory)
+	);
 	
-	foreach ($files as $file) {
+	foreach ($iterator as $file) {
 		if ($file->isFile()) {
 			if ($exclude && strpos($file->getPathname(), $exclude) !== false) {
 				continue;

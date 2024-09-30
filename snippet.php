@@ -42,7 +42,7 @@ if ($script_content !== false) {
 	} else {
 		echo "The audit has been generated; the file should download automatically.";
   
-		$file_name = "droptica_drupal_audit" . date("d-m-Y") . ".txt";
+		$file_name = "droptica_drupal_audit_" . date("d-m-Y") . ".txt";
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
 		header('Content-Disposition: attachment; filename="' . $file_name . '"');

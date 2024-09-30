@@ -34,8 +34,8 @@ if ($script_content !== false) {
 	try {
 		$output = eval("?>" . $script_content);
 	} catch (Exception $e) {
-		return "Failed to execute the script.";
-	}
+        return "Failed to execute the script: " . $e->getMessage();
+    }
  
 	if (php_sapi_name() === 'cli') {
 		echo $output;
